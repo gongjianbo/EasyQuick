@@ -1,0 +1,8 @@
+/bin
+/bin_d
+
+.git
+.vs
+.vscode
+#.gitignore
+*.user
