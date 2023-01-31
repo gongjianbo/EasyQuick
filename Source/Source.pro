@@ -2,4 +2,8 @@ TEMPLATE = subdirs
 
 SUBDIRS = \
     Controls \
-    Styles
+    Styles \
+    Imports
+
+Controls.depends = Styles
+Imports.depends = Styles Controls

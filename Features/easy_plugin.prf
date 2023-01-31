@@ -1,0 +1,24 @@
+TEMPLATE = lib
+TARGET_NAME = EasyQuick$${MODULE_NAME}Plugin
+TARGET = $$qtLibraryTarget($$TARGET_NAME)
+
+CONFIG += plugin
+CONFIG += qmltypes
+QML_IMPORT_NAME = EasyQuick.$${MODULE_NAME}
+QML_IMPORT_MAJOR_VERSION = 1
+
+OTHER_FILES += qmldir
+
+#make dll and qmldir to qt install dir.
+#or using make arguments "install".
+copy_qmltypes.files = $$OUT_PWD/plugins.qmltypes
+copy_qmltypes.path = $$DESTDIR
+COPIES += copy_qmltypes
+copy_qmldir.files = qmldir
+copy_qmldir.path = $$DESTDIR
+COPIES += copy_qmldir
+
+target.path = $$INSTALLDIR
+qmldir.files = $$PWD/qmldir
+qmldir.path = $$INSTALLDIR
+INSTALLS += target qmldir

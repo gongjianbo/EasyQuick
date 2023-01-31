@@ -1,36 +1,24 @@
-TEMPLATE = lib
-TARGET = $$qtLibraryTarget(EasyQuickControls)
+MODULE_NAME = Controls
 
-CONFIG += plugin
-CONFIG += qmltypes
-QML_IMPORT_NAME = Easy.Controls
-QML_IMPORT_MAJOR_VERSION = 1
+DESTDIR = $$PWD/../../bin
+INSTALLDIR = $$[QT_INSTALL_BINS]
 
-include( $$PWD/../SourceConfig.pri )
+load(easy_lib)
 
-OTHER_FILES += \
-    qmldir
+load(source_config)
+
+DEFINES += EASYQUICK_CONTROLS_BUILD_LIB
 
 HEADERS += \
-    EControlsPlugin.h \
+    EControlsGlobal.h \
     EControlsObject.h
 
 SOURCES += \
+    EControlsGlobal.cpp \
     EControlsObject.cpp
 
-DESTDIR = $$PWD/../../bin/EasyQuick/Controls
+CONFIG(release, debug|release): LIBS += -L$$PWD/../../bin/ -lEasyQuickStyles
+else:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../bin/ -lEasyQuickStylesd
 
-#make dll and amldir to qt install dir.
-#or using make arguments"install".
-copy_qmltypes.files = $$OUT_PWD/plugins.qmltypes
-copy_qmltypes.path = $$DESTDIR
-COPIES += copy_qmltypes
-copy_qmldir.files = qmldir
-copy_qmldir.path = $$DESTDIR
-COPIES += copy_qmldir
-
-DESTPATH = $$[QT_INSTALL_QML]/EasyQuick/Controls
-target.path = $$DESTPATH
-qmldir.files = $$PWD/qmldir
-qmldir.path = $$DESTPATH
-INSTALLS += target qmldir
+INCLUDEPATH += $$PWD/../Styles
+DEPENDPATH += $$PWD/../Styles

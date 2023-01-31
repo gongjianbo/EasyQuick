@@ -1,36 +1,19 @@
-TEMPLATE = lib
-TARGET = $$qtLibraryTarget(EasyQuickStyles)
+MODULE_NAME = Styles
 
-CONFIG += plugin
-CONFIG += qmltypes
-QML_IMPORT_NAME = Easy.Styles
-QML_IMPORT_MAJOR_VERSION = 1
+DESTDIR = $$PWD/../../bin
+INSTALLDIR = $$[QT_INSTALL_BINS]
 
-include( $$PWD/../SourceConfig.pri )
+load(easy_lib)
 
-OTHER_FILES += \
-    qmldir
+load(source_config)
+
+DEFINES += EASYQUICK_STYLES_BUILD_LIB
 
 HEADERS += \
-    EStylesObject.h \
-    EStylesPlugin.h
+    EStylesGlobal.h \
+    EStylesObject.h
 
 SOURCES += \
+    EStylesGlobal.cpp \
     EStylesObject.cpp
 
-DESTDIR = $$PWD/../../bin/EasyQuick/Styles
-
-#make dll and amldir to qt install dir.
-#or using make arguments"install".
-copy_qmltypes.files = $$OUT_PWD/plugins.qmltypes
-copy_qmltypes.path = $$DESTDIR
-COPIES += copy_qmltypes
-copy_qmldir.files = qmldir
-copy_qmldir.path = $$DESTDIR
-COPIES += copy_qmldir
-
-DESTPATH = $$[QT_INSTALL_QML]/EasyQuick/Styles
-target.path = $$DESTPATH
-qmldir.files = $$PWD/qmldir
-qmldir.path = $$DESTPATH
-INSTALLS += target qmldir

@@ -1,0 +1,2 @@
+module EasyQuick.Styles
+plugin EasyQuickStylesPlugin

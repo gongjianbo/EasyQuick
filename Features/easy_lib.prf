@@ -1,0 +1,7 @@
+TEMPLATE = lib
+TARGET_NAME = EasyQuick$${MODULE_NAME}
+TARGET = $$qtLibraryTarget($$TARGET_NAME)
+
+#using make arguments "install".
+target.path = $$INSTALLDIR
+INSTALLS += target

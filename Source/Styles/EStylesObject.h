@@ -1,7 +1,8 @@
 #pragma once
 #include <QObject>
+#include "EStylesGlobal.h"
 
-class EStylesObject : public QObject
+class EasyQuick_Styles EStylesObject : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
